@@ -1,0 +1,27 @@
+info:
+  id: configserver
+  description: configserver
+spring:
+  profiles:
+    active: '默认'
+
+---
+spring:
+    profiles: '默认'
+server:
+  port: 8888
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+eureka:
+  instance:
+    hostname: configserver
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://discoveryserver:${server.port}/eureka/
